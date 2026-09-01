@@ -70,6 +70,7 @@ public class JsonTaskRepository implements TaskRepository {
             for (int i = 0; i < tasks.size(); i++) {
                 // adding in the stringBuilder the json formatted task
                 stringBuilder.append(taskToJson(tasks.get(i)));
+                // if we haven't reached the last task - then append a comma for the next one
                 if (i < tasks.size() - 1) {
                     stringBuilder.append(",");
                 }
