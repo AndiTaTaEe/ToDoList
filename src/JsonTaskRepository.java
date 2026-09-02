@@ -15,6 +15,9 @@ public class JsonTaskRepository implements TaskRepository {
         createJsonFile();
     }
 
+    /**
+     * createJSONFile - function for initializing the .json file, if it doesn't exist in the working directory
+     */
     private void createJsonFile(){
         try {
             if (jsonPath.getParent()!= null){
@@ -142,28 +145,85 @@ public class JsonTaskRepository implements TaskRepository {
         }
     }
 
-    @Override
-    public void add(Task task) {
+    /**
+     * function for returning the next available ID
+     * @param tasks
+     * @return - next available ID of the task
+     */
+    private int nextAvailableId(List<Task> tasks){
+        int maxId = 0;
+        for (Task task: tasks){
+            if (task.id() > maxId){
+                maxId = task.id();
+            }
+        }
+        return maxId + 1;
+    }
 
+    @Override
+    public Task add(Task task) {
+        if (task == null){
+            throw new IllegalArgumentException("Task cannot be null");
+        }
+        // the task should be added firstly in a List<Task>
+        List<Task> storedTasks = readTasksFromJson();
+        Task newTask = new Task(nextAvailableId(storedTasks), task.description());
+        // add the task in the arrayList
+        storedTasks.add(newTask);
+        // write the added task to the json file as well
+        writeTasksToJson(storedTasks);
+
+        // returning the task
+        return newTask;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        if (id <= 0){
+            return false;
+        }
+        List<Task> storedTasks = readTasksFromJson();
+        // remove a task if the id of the task in the list equals the id passed as a function argument
+        boolean removed = storedTasks.removeIf(task -> task.id() == id);
+        if (removed){
+            writeTasksToJson(storedTasks);
+        }
+        return removed;
     }
 
     @Override
     public boolean update(Task task) {
-        return false;
+        if (task == null || task.id() <= 0) {
+            return false;
+        }
+        List<Task> storedTasks = readTasksFromJson();
+        for (int i = 0; i < storedTasks.size(); i++){
+            // searching for the id
+            if (storedTasks.get(i).id() == task.id()){
+                storedTasks.set(i, task); // updating the task
+                writeTasksToJson(storedTasks);
+                return true;
+            }
+        }
+        return false; // task with the given id wasnt found
     }
 
     @Override
     public Optional<Task> findById(int id) {
+        if (id <= 0){
+            return Optional.empty();
+        }
+        List<Task> storedTasks = readTasksFromJson();
+        for (int i = 0; i< storedTasks.size(); i++){
+            if (storedTasks.get(i).id() == id){
+                return Optional.of(storedTasks.get(i));
+            }
+        }
         return Optional.empty();
     }
 
     @Override
     public List<Task> findAll() {
-        return List.of();
+        return readTasksFromJson();
     }
 }
