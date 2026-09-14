@@ -1,6 +1,6 @@
 # Task Tracker CLI
 
-A lightweight, zero-dependency Command-Line Interface (CLI) application built with Java to track, organize, and manage tasks directly from your terminal. All tasks are persisted locally in a structured JSON format without relying on external libraries or frameworks.
+A lightweight, zero-dependency Command-Line Interface (CLI) application built with Java to track, organize, and manage tasks directly from your terminal. All tasks are persisted locally in a structured JSON format without relying on external libraries or frameworks. It represents a sample solution for the [Task Tracker](https://roadmap.sh/projects/task-tracker) challenge from [roadmap.sh](https://roadmap.sh/).
 
 ---
 
@@ -61,7 +61,7 @@ javac *.java
 
 Run the compiled application using `java TaskListApp` followed by the command and arguments.
 
-### 1. Add a Task
+### 1. Add a task
 Creates a new task with status `todo` and prints the generated ID:
 
 ```bash
@@ -69,7 +69,7 @@ java TaskListApp add "Buy groceries"
 # Output: Task added successfully (ID: 1)
 ```
 
-### 2. Update Task Description
+### 2. Update task description
 Updates the description and refreshes the `updatedAt` timestamp:
 
 ```bash
@@ -77,7 +77,7 @@ java TaskListApp update 1 "Buy groceries and prepare dinner"
 # Output: Task with ID: 1 updated successfully
 ```
 
-### 3. Update Task Status
+### 3. Update task status
 Transition task state to `in-progress` or `done`:
 
 ```bash
@@ -88,7 +88,7 @@ java TaskListApp mark-done 1
 # Output: Task with ID: 1 marked done.
 ```
 
-### 4. List Tasks
+### 4. List tasks
 List all tasks:
 
 ```bash
@@ -112,7 +112,7 @@ ID   | Status        | Description                         | Updated at
 2    | in-progress   | Write unit tests                    | 2026-09-14 21:42:15 
 ```
 
-### 5. Delete a Task
+### 5. Delete a task
 Removes a task by its unique ID:
 
 ```bash
@@ -181,4 +181,4 @@ Tasks are stored in `tasks.json` in the working execution directory using the fo
 ]
 ```
 
-```
+
