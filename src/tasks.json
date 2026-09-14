@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "description": "buy groceries and cook dinner",
+    "status": "IN_PROGRESS",
+    "createdAt": "2026-09-14T22:05:02.722470100",
+    "updatedAt": "2026-09-14T22:06:03.357551600"
+  },
+  {
+    "id": 2,
+    "description": "Read chapter 4 of clean code",
+    "status": "TODO",
+    "createdAt": "2026-09-14T22:15:00.429707400",
+    "updatedAt": "2026-09-14T22:15:00.429707400"
+  }
+]

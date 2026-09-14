@@ -24,9 +24,9 @@ public record Task(int id, String description, Status status, LocalDateTime crea
         if (updatedAt == null){
             throw new IllegalArgumentException("updatedAt field cannot be null");
         }
-        if (!updatedAt.isBefore(createdAt)){
+        /*if (!updatedAt.isBefore(createdAt)){
             throw new IllegalArgumentException("updatedAt field cannot be a date in the future");
-        }
+        }*/
     }
 
     // constructor for creating a new task
