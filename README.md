@@ -45,6 +45,7 @@ java -version
 1. Clone or navigate to the source directory:
 
 ```bash
+git clone https://github.com/AndiTaTaEe/ToDoList.git
 cd path/to/project/src
 ```
 
